@@ -5,7 +5,8 @@ package edu.tallerweb.pptls;
  */
 public class Mano {
 	private Forma forma;
-
+	private Integer dimension = 5;
+	private Resultado matriz[][] = new Resultado[dimension][dimension];
 	/**
 	 * Toda Mano debe crearse con una forma dada, que será
 	 * la que determine su condición en el juego.
@@ -24,11 +25,31 @@ public class Mano {
 	 */
 	public Resultado jugarCon(final Mano otra) {
 		//throw new RuntimeException("No implementado aún");
-		Resultado matriz[][]=new Resultado[5][5];
-	    matriz[0][0] = matriz[1][1] = matriz[2][2]= matriz[3][3] = matriz[4][4] = Resultado.EMPATA;
-	    matriz[0][3] = matriz[0][4] = matriz[1][0]= matriz[1][4] = matriz[2][0] = matriz[2][1] = matriz[3][1] = matriz[3][2] = matriz[4][2] = matriz[4][3] = Resultado.GANA;
-	    matriz[0][1] = matriz[0][2] = matriz[1][2]= matriz[1][3] = matriz[2][3] = matriz[2][4] = matriz[3][0] = matriz[3][4] = matriz[4][0] = matriz[4][1] = Resultado.PIERDE;
-
+	    matriz[0][0] = Resultado.EMPATA;
+	    matriz[1][1] = Resultado.EMPATA;
+	    matriz[2][2] = Resultado.EMPATA;
+	    matriz[3][3] = Resultado.EMPATA;
+	    matriz[4][4] = Resultado.EMPATA;
+	    matriz[0][3] = Resultado.GANA;
+	    matriz[0][4] = Resultado.GANA;
+	    matriz[1][0] = Resultado.GANA;
+	    matriz[1][4] = Resultado.GANA;
+	    matriz[2][0] = Resultado.GANA;
+	    matriz[2][1] = Resultado.GANA;
+	    matriz[3][1] = Resultado.GANA;
+	    matriz[3][2] = Resultado.GANA;
+	    matriz[4][2] = Resultado.GANA;
+	    matriz[4][3] = Resultado.GANA;
+	    matriz[0][1] = Resultado.PIERDE;
+	    matriz[0][2] = Resultado.PIERDE;
+	    matriz[1][2] = Resultado.PIERDE;
+	    matriz[1][3] = Resultado.PIERDE;
+	    matriz[2][3] = Resultado.PIERDE;
+	    matriz[2][4] = Resultado.PIERDE;
+	    matriz[3][0] = Resultado.PIERDE;
+	    matriz[3][4] = Resultado.PIERDE;
+	    matriz[4][0] = Resultado.PIERDE;
+	    matriz[4][1] = Resultado.PIERDE;
 	    return matriz[this.forma.getValor()][otra.forma.getValor()];
 	}
 
