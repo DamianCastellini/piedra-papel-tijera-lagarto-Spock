@@ -4,14 +4,14 @@ package edu.tallerweb.pptls;
  * Representa una de las Manos involucradas en el juego
  */
 public class Mano {
+	/**
+	 * Creamos una matriz de 5x5, del tipo Resultado la cual en cada casillero va a contener el resultado
+	 * De la combinaciÛn jugada, la diagonal va a contener los empates y luego las dem·s combinaciones
+	 * Estar·n definidas por regla de negocio.
+	 */
 	private Forma forma;
-	private static final Integer dimension = 5;
-	private Resultado[][] matriz = new Resultado[dimension][dimension];
-	private static final Integer cero = 0;
-	private static final Integer uno = 1;
-	private static final Integer dos = 2;
-	private static final Integer tres = 3;
-	private static final Integer cuatro = 4;
+	private static final Integer DIMENSION = 5;
+	private Resultado[][] matrizDePosiblesCombinaciones = new Resultado[DIMENSION][DIMENSION];
 	/**
 	 * Toda Mano debe crearse con una forma dada, que ser√°
 	 * la que determine su condici√≥n en el juego.
@@ -27,35 +27,37 @@ public class Mano {
 	 * del juego.
 	 * @param otra, la otra Mano.
 	 * @return un Resultado, de acuerdo al estado del juego.
+	 * Inicializamos la matriz, primero con los empates, luego con las jugadas ganadores y luego
+	 * las perdedoras, finalmente retornamos el valor que contiene el casillero jugado.
 	 */
 	public Resultado jugarCon(final Mano otra) {
 		//throw new RuntimeException("No implementado a√∫n");
-	    matriz[cero][cero] = Resultado.EMPATA;
-	    matriz[uno][uno] = Resultado.EMPATA;
-	    matriz[dos][dos] = Resultado.EMPATA;
-	    matriz[tres][tres] = Resultado.EMPATA;
-	    matriz[cuatro][cuatro] = Resultado.EMPATA;
-	    matriz[cero][tres] = Resultado.GANA;
-	    matriz[cero][cuatro] = Resultado.GANA;
-	    matriz[uno][cero] = Resultado.GANA;
-	    matriz[uno][cuatro] = Resultado.GANA;
-	    matriz[dos][cero] = Resultado.GANA;
-	    matriz[dos][uno] = Resultado.GANA;
-	    matriz[tres][uno] = Resultado.GANA;
-	    matriz[tres][dos] = Resultado.GANA;
-	    matriz[cuatro][dos] = Resultado.GANA;
-	    matriz[cuatro][tres] = Resultado.GANA;
-	    matriz[cero][uno] = Resultado.PIERDE;
-	    matriz[cero][dos] = Resultado.PIERDE;
-	    matriz[uno][dos] = Resultado.PIERDE;
-	    matriz[uno][tres] = Resultado.PIERDE;
-	    matriz[dos][tres] = Resultado.PIERDE;
-	    matriz[dos][cuatro] = Resultado.PIERDE;
-	    matriz[tres][cero] = Resultado.PIERDE;
-	    matriz[tres][cuatro] = Resultado.PIERDE;
-	    matriz[cuatro][cero] = Resultado.PIERDE;
-	    matriz[cuatro][uno] = Resultado.PIERDE;
-	    return matriz[this.forma.getValor()][otra.forma.getValor()];
+		matrizDePosiblesCombinaciones[Forma.PIEDRA.getValor()][Forma.PIEDRA.getValor()] = Resultado.EMPATA;
+		matrizDePosiblesCombinaciones[Forma.SPOCK.getValor()][Forma.SPOCK.getValor()] = Resultado.EMPATA;
+		matrizDePosiblesCombinaciones[Forma.PAPEL.getValor()][Forma.PAPEL.getValor()] = Resultado.EMPATA;
+		matrizDePosiblesCombinaciones[Forma.LAGARTO.getValor()][Forma.LAGARTO.getValor()] = Resultado.EMPATA;
+		matrizDePosiblesCombinaciones[Forma.TIJERA.getValor()][Forma.TIJERA.getValor()] = Resultado.EMPATA;
+		matrizDePosiblesCombinaciones[Forma.PIEDRA.getValor()][Forma.LAGARTO.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.PIEDRA.getValor()][Forma.TIJERA.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.SPOCK.getValor()][Forma.PIEDRA.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.SPOCK.getValor()][Forma.TIJERA.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.PAPEL.getValor()][Forma.PIEDRA.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.PAPEL.getValor()][Forma.SPOCK.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.LAGARTO.getValor()][Forma.SPOCK.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.LAGARTO.getValor()][Forma.PAPEL.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.TIJERA.getValor()][Forma.PAPEL.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.TIJERA.getValor()][Forma.LAGARTO.getValor()] = Resultado.GANA;
+		matrizDePosiblesCombinaciones[Forma.PIEDRA.getValor()][Forma.SPOCK.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.PIEDRA.getValor()][Forma.PAPEL.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.SPOCK.getValor()][Forma.PAPEL.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.SPOCK.getValor()][Forma.LAGARTO.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.PAPEL.getValor()][Forma.LAGARTO.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.PAPEL.getValor()][Forma.TIJERA.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.LAGARTO.getValor()][Forma.PIEDRA.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.LAGARTO.getValor()][Forma.TIJERA.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.TIJERA.getValor()][Forma.PIEDRA.getValor()] = Resultado.PIERDE;
+		matrizDePosiblesCombinaciones[Forma.TIJERA.getValor()][Forma.SPOCK.getValor()] = Resultado.PIERDE;
+	    return matrizDePosiblesCombinaciones[this.forma.getValor()][otra.forma.getValor()];
 	}
 
 }
