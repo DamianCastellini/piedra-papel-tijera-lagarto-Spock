@@ -5,8 +5,8 @@ package edu.tallerweb.pptls;
  */
 public class Mano {
 	private Forma forma;
-	private Integer dimension = 5;
-	private Resultado matriz[][] = new Resultado[dimension][dimension];
+	private static final Integer dimension = 5;
+	private Resultado[][] matriz = new Resultado[dimension][dimension];
 	/**
 	 * Toda Mano debe crearse con una forma dada, que será
 	 * la que determine su condición en el juego.
